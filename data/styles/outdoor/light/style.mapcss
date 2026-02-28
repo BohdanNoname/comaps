@@ -1,0 +1,8 @@
+@import("colors.mapcss");
+@import("../include/basemap.mapcss");
+@import("../include/basemap_label.mapcss");
+@import("../include/ways.mapcss");
+@import("../include/ways_label.mapcss");
+@import("../include/icons.mapcss");
+@import("../include/icons_label_colors.mapcss");
+@import("../include/transit_systems.mapcss");
