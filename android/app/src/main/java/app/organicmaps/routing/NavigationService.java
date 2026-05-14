@@ -281,8 +281,8 @@ public class NavigationService extends Service implements LocationListener
     if (drawable == null) return null;
 
     return (isColorizedSupported() && !isLiveUpdateSupported())
-            ? Graphics.drawableToBitmap(drawable)
-            : Graphics.drawableToBitmapWithTint(drawable, ContextCompat.getColor(this, R.color.base_accent));
+            ? Graphics.drawableToBitmapWithTint(drawable, ContextCompat.getColor(this, R.color.notification))
+            : Graphics.drawableToBitmap(drawable);
   }
 
   private void updateRoutingNotification(RoutingInfo routingInfo)
