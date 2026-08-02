@@ -27,8 +27,6 @@
 *.meta   text eol=lf
 *.gitattributes text eol=lf
 *.gitignore text eol=lf
-# Extensionless Unix scripts (e.g. the Gradle wrapper) must stay LF or their
-# shebang breaks on checkout ("cannot execute: required file not found").
 gradlew  text eol=lf
 
 # Declare files that will always have CRLF line endings on checkout.
