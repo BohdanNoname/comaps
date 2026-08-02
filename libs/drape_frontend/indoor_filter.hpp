@@ -14,15 +14,9 @@ namespace df
 {
 // Returns true if a feature isn't part of the active indoor level and should be skipped at rendering
 //
-// Indoor-typed features (indoor=*) are always filtered by the active level.
-//
-// Non-indoor features that carry a level=* tag (POIs, stairs, etc.) are filtered ONLY when:
-//   1. Their center is within ~5 m of an indoor polygon rect AND
-//   2. Their level intersects the building's available floor set.
-// If either is false the feature stays visible. This prevents transit platforms or external
-// footways from being hidden just because they happen to share a level tag with a nearby mall.
-//
-// The building shell (building / building:part) is never filtered: it spans all floors.
+// Indoor-tagged polygons (indoor=*) are always filtered by the active level.
+// Features with a level=* tag are only sometimes filtered (see below)
+// We intentionally don't filter building outlines/parts or non-level-tagged features.
 //
 // When no indoor level is active (kNoActiveLevel) nothing is skipped.
 inline bool ShouldSkipIndoorFeature(feature::TypesHolder const & types, std::string_view levelMeta,
@@ -37,11 +31,12 @@ inline bool ShouldSkipIndoorFeature(feature::TypesHolder const & types, std::str
   bool const isLeveled = !levelMeta.empty() && !ftypes::IsBuildingChecker::Instance()(types) &&
                          !ftypes::IsBuildingPartChecker::Instance()(types);
   if (!isIndoor && !isLeveled)
-    return false;
+    return false;  
 
+  // POIs with level=* etc
   if (!isIndoor)
   {
-    // only filter if the feature center is within ~5 m of an indoor polygon.
+    // only filter if the feature center is within ~5m of an indoor=* polygon.
     double constexpr kProximityDeg = 0.00005;
     if (!indoorPolygonRects.empty())
     {
@@ -60,13 +55,14 @@ inline bool ShouldSkipIndoorFeature(feature::TypesHolder const & types, std::str
         return false;
     }
 
-    // only filter if the feature's level intersects the building floors.
+    // If a POI has some other level like -0.5 that isn't part of our indoor=* level picker, don't filter it
     bool const levelIsInBuilding = std::any_of(availableLevels.begin(), availableLevels.end(),
       [&](double buildingLevel) { return indoor::LevelsContain(levelMeta, buildingLevel); });
     if (!levelIsInBuilding)
       return false;
   }
 
+  // It's an indoor element. Don't filter when it's level(s) are active
   return !indoor::LevelsContain(levelMeta, activeLevel);
 }
 }  // namespace df
