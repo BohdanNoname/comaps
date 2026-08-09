@@ -23,7 +23,7 @@ place-country                                       # caption z3-
 === 7600
 
 place-city-capital-2                                # icon z4- (also has caption(mandatory) z4-)
-# place-city-capital-2                              # caption(mandatory) z4- (also has icon z4-)
+place-city-capital-2                                # caption(mandatory) z4- (also has icon z4-)
 === 7550
 
 place-city-capital-3                                # caption z4-
@@ -2520,7 +2520,7 @@ power-substation                                    # icon z17- (also has captio
 # amenity-give_box                                  # caption(optional) z18- (also has icon z18-)
 # amenity-hydrant                                   # caption(optional) z19- (also has icon z19-)
 amenity-loading_dock                                # icon z19- (also has caption(optional) z19-)
-# amenity-loading_dock                              # caption(optional) z19- (also has icon z19-)
+amenity-loading_dock                                # caption(optional) z19- (also has icon z19-)
 # amenity-lounger                                   # caption(optional) z19- (also has icon z18-)
 # amenity-parking_space-disabled                    # caption(optional) z19- (also has icon z18-)
 # amenity-telephone                                 # caption(optional) z19- (also has icon z17-)
@@ -2545,7 +2545,7 @@ amenity-loading_dock                                # icon z19- (also has captio
 # entrance-garage                                   # caption(optional) z19- (also has icon z19-)
 # entrance-house                                    # caption(optional) z19- (also has icon z18-)
 entrance-service                                    # icon z19- (also has caption(optional) z19-)
-# entrance-service                                  # caption(optional) z19- (also has icon z19-)
+entrance-service                                    # caption(optional) z19- (also has icon z19-)
 # man_made-cairn                                    # caption(optional) z19- (also has icon z19-)
 # man_made-survey_point                             # caption(optional) z18- (also has icon z18-)
 # man_made-telescope                                # caption(optional) z18- (also has icon z18-)
